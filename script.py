@@ -114,7 +114,7 @@ def enviar_email(df):
     except Exception as e: print(f"Error: {e}")
 
 if __name__ == "__main__":
-    mi_cartera = {"MSFT": 22, "BSX": 18, "AMZN": 13, "META": 10, "NFLX": 9, "UBER": 8, "AVAV": 6, "APP": 6, "PLTR": 5, "CRDO": 3}
+    mi_cartera = {"AVGO": 10, "IBM": 7, "TESLA": 9, "GOOGL": 10, "CCJ": 10, "MU": 8, "TSM": 12, "GE": 12, "JPM": 12, "LLY": 5}
     scanner = VSAML_Golden_Scanner(mi_cartera)
     scanner.entrenar()
     df_reporte = scanner.escanear_vivo()
