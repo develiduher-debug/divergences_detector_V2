@@ -1,0 +1,31 @@
+name: Daily Stock Scan VSA
+
+on:
+  schedule:
+    # Lunes a Viernes a las 14:35 UTC (9:35 AM EST)
+    - cron: '35 14 * * 1-5'
+  workflow_dispatch: # Permite ejecutarlo manualmente
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout código
+        uses: actions/checkout@v3
+
+      - name: Configurar Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'
+
+      - name: Instalar dependencias
+        run: |
+          pip install yfinance pandas numpy
+          pip install yfinance pandas numpy scikit-learn
+
+      - name: Ejecutar Scanner
+        env:
+          EMAIL_USER: ${{ secrets.EMAIL_USER }}
+          EMAIL_PASS: ${{ secrets.EMAIL_PASS }}
+          EMAIL_RECEIVER: ${{ secrets.EMAIL_RECEIVER }}
+        run: python script.py
